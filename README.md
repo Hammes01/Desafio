@@ -49,6 +49,6 @@ Enfrentei desafios significativos ao longo do projeto, especialmente no início,
 
 ### Informações Adicionais
 
-Com o IDE com permisão de administrador, dentro do terminal coloque o seguinte código:
+**Com o IDE com permisão de administrador, dentro do terminal coloque o seguinte código:**
 -npx json-server --watch db.json --port 5000
 -npm start
