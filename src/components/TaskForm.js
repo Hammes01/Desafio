@@ -1,21 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { TextField, Button } from '@mui/material';
 
-const TaskForm = ({ onAddTask, editedTask, onEditTask }) => {
+const TaskForm = ({ onAddTask }) => {
+  // Estado local para controlar o valor do campo de entrada de texto
   const [taskInput, setTaskInput] = useState('');
 
-  useEffect(() => {
-    // Atualiza o estado local para sincronizar com o texto da tarefa sendo editada
-    setTaskInput(editedTask);
-  }, [editedTask]);
-
+  // Função para lidar com a adição de uma nova tarefa
   const handleAddTask = () => {
+    // Verifica se o texto da tarefa está vazio antes de adicionar
     if (taskInput.trim() !== '') {
-      if (editedTask) {
-        onEditTask(taskInput);
-      } else {
-        onAddTask(taskInput);
-      }
+      // Chama a função onAddTask passada como propriedade, com o texto da tarefa como argumento
+      onAddTask(taskInput);
+      // Limpa o campo de entrada após adicionar a tarefa
       setTaskInput('');
     }
   };
@@ -23,12 +19,12 @@ const TaskForm = ({ onAddTask, editedTask, onEditTask }) => {
   return (
     <div>
       <TextField
-        label={editedTask ? "Editar Tarefa" : "Nova Tarefa"}
+        label="Nova Tarefa"
         value={taskInput}
-        onChange={(e) => setTaskInput(e.target.value)}
+        onChange={(e) => setTaskInput(e.target.value)} // Atualiza o estado com o valor do campo de entrada
       />
       <Button onClick={handleAddTask} variant="contained" color="primary">
-        {editedTask ? "Salvar" : "Adicionar"}
+        Adicionar
       </Button>
     </div>
   );
