@@ -46,3 +46,9 @@ Configurar um backend simulado utilizando JSON Server para fornecer endpoints RE
 ### Relatório
 
 Enfrentei desafios significativos ao longo do projeto, especialmente no início, ao lidar com problemas de compatibilidade em meu ambiente de desenvolvimento, os quais demandaram cerca de 3 horas para solucionar. Utilizei amplamente recursos educacionais online, como vídeos do YouTube e documentações, para aprender sobre o uso do Material-UI (MUI), Axios e conceitos do React para implementar as funcionalidades necessárias. Encontrei dificuldades na integração das alterações das tarefas com o backend simulado, mas consegui superá-las com a ajuda do ChatGPT para identificar e resolver problemas de comunicação com o servidor.
+
+### Informações Adicionais
+
+Com o IDE com permisão de administrador, dentro do terminal coloque o seguinte código:
+-npx json-server --watch db.json --port 5000
+-npm start
