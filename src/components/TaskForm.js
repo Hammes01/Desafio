@@ -1,14 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TextField, Button } from '@mui/material';
 
-// Componente funcional TaskForm para adicionar novas tarefas
-const TaskForm = ({ onAddTask }) => {
+const TaskForm = ({ onAddTask, editedTask, onEditTask }) => {
   const [taskInput, setTaskInput] = useState('');
 
-  // Função para lidar com a adição de uma nova tarefa
+  useEffect(() => {
+    // Atualiza o estado local para sincronizar com o texto da tarefa sendo editada
+    setTaskInput(editedTask);
+  }, [editedTask]);
+
   const handleAddTask = () => {
     if (taskInput.trim() !== '') {
-      onAddTask(taskInput);
+      if (editedTask) {
+        onEditTask(taskInput);
+      } else {
+        onAddTask(taskInput);
+      }
       setTaskInput('');
     }
   };
@@ -16,11 +23,12 @@ const TaskForm = ({ onAddTask }) => {
   return (
     <div>
       <TextField
-        label="Nova Tarefa"
+        label={editedTask ? "Editar Tarefa" : "Nova Tarefa"}
         value={taskInput}
-        onChange={(e) => setTaskInput(e.target.value)}/>
+        onChange={(e) => setTaskInput(e.target.value)}
+      />
       <Button onClick={handleAddTask} variant="contained" color="primary">
-        Adicionar
+        {editedTask ? "Salvar" : "Adicionar"}
       </Button>
     </div>
   );

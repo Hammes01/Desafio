@@ -2,85 +2,77 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import TaskList from './components/TaskList';
 import TaskForm from './components/TaskForm';
-import tasks from './Data';
 
 function Desafio1() {
-  const [tasksData, setTasksData] = useState([]);
-  const [editingTaskId, setEditingTaskId] = useState(null);
-  const [editedTaskText, setEditedTaskText] = useState('');
-
-  useEffect(() => {
-    setTasksData(tasks);
-  }, []);
-
-  const handleAddTask = (newTaskText) => {
-    // Criar uma nova tarefa com base no texto fornecido e um ID)
-    const newTask = {
-      id: Math.random().toString(36).substr(2, 9),
-      text: newTaskText,
-      completed: false,
+    // Estado para armazenar a lista de tarefas e outras variáveis de controle
+    const [tasks, setTasks] = useState([]);
+    const [editingTaskId, setEditingTaskId] = useState(null);
+    const [editedTaskText, setEditedTaskText] = useState('');
+    
+    useEffect(() => {
+      fetchTasks();
+    }, []);
+  
+    // Função para buscar as tarefas do servidor
+    const fetchTasks = () => {
+      axios.get('http://localhost:5000/tasks')
+        .then(response => setTasks(response.data))
+        .catch(error => console.error('Erro ao buscar tarefas:', error));
+    };
+  
+    // Função para adicionar uma nova tarefa
+    const handleAddTask = (text) => {
+      axios.post('http://localhost:5000/tasks', { text, completed: false })
+        .then(() => fetchTasks())
+        .catch(error => console.error('Erro ao adicionar tarefa:', error));
+    };
+  
+    // Função para deletar uma tarefa
+    const handleDeleteTask = (taskId) => {
+      axios.delete(`http://localhost:5000/tasks/${taskId}`)
+        .then(() => fetchTasks())
+        .catch(error => console.error('Erro ao excluir tarefa:', error));
+    };
+  
+    // Função para preparar a edição de uma tarefa
+    const handleToggleTask = (taskId, currentText) => {
+      setEditingTaskId(taskId);
+      setEditedTaskText(currentText);
+    };
+  
+    // Função para salvar alterações em uma tarefa
+    const handleSaveTask = (taskId, newText, completed) => {
+      axios.patch(`http://localhost:5000/tasks/${taskId}`, { text: newText, completed })
+        .then(() => {
+          fetchTasks();
+          setEditingTaskId(null);
+          setEditedTaskText('');
+        })
+        .catch(error => console.error('Erro ao atualizar tarefa:', error));
+    };
+  
+    // Função para alternar o status de realização de uma tarefa
+    const handleToggleCompleted = (taskId, completed) => {
+      axios.patch(`http://localhost:5000/tasks/${taskId}`, { completed: !completed })
+        .then(() => fetchTasks())
+        .catch(error => console.error('Erro ao alternar completude:', error));
     };
 
-    setTasksData([...tasksData, newTask]);
-  };
-
-  const handleDeleteTask = (taskId) => {
-    // Filtrar as tarefas para remover a tarefa com o ID correspondente
-    const updatedTasks = tasksData.filter(task => task.id !== taskId);
-
-    setTasksData(updatedTasks);
-  };
-
-  const handleToggleTask = (taskId, currentText) => {
-    // Configurar o ID da tarefa em edição e o texto editado
-    setEditingTaskId(taskId);
-    setEditedTaskText(currentText);
-  };
-
-  const handleSaveTask = (taskId, newText, completed) => {
-    // Atualizar a tarefa com o novo texto e estado de conclusão
-    const updatedTasks = tasksData.map(task => {
-      if (task.id === taskId) {
-        return { ...task, text: newText, completed };
-      }
-      return task;
-    });
-
-    // Limpar o estado de edição após salvar
-    setEditingTaskId(null);
-    setEditedTaskText('');
-
-    // Atualizar o estado de tarefas com as alterações
-    setTasksData(updatedTasks);
-  };
-
-  const handleToggleCompleted = (taskId, completed) => {
-    // Alternar o estado de conclusão da tarefa com base no ID
-    const updatedTasks = tasksData.map(task => {
-      if (task.id === taskId) {
-        return { ...task, completed: !completed };
-      }
-      return task;
-    });
-
-    // Atualizar o estado de tarefas com as alterações
-    setTasksData(updatedTasks);
-  };
-
-  return (
-    <div>
-      <TaskForm onAddTask={handleAddTask} />
-      <TaskList
-        tasks={tasksData}
-        onToggleCompleted={handleToggleCompleted}
-        onDelete={handleDeleteTask}
-        onToggleEdit={handleToggleTask}
-        onSaveTask={handleSaveTask}
-        editingTaskId={editingTaskId}
-        editedTaskText={editedTaskText}
-      />
-    </div>
-  );
-}
-
-export default Desafio1;
+    return (
+      <div>
+        {/* Componente para adicionar novas tarefas */}
+        <TaskForm onAddTask={handleAddTask} />
+  
+        {/* Componente para exibir a lista de tarefas */}
+        <TaskList
+          tasks={tasks}
+          onToggleCompleted={handleToggleCompleted}
+          onDelete={handleDeleteTask}
+          onToggleEdit={handleToggleTask}
+        />
+      </div>
+    );
+  }
+  
+  export default Desafio1;
+  
