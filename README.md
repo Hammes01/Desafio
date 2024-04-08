@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+## Desafio:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este projeto consiste em desenvolver uma aplicação web para gerenciamento de tarefas (to-dos) utilizando React no frontend e um backend simulado com JSON Server.
 
-## Available Scripts
+### Parte 1: Desenvolvimento do Frontend com React
 
-In the project directory, you can run:
+**Objetivo:**
+Criar uma interface de usuário interativa que permita ao usuário adicionar, listar, editar, marcar como concluída e excluir tarefas.
 
-### `npm start`
+**Requisitos:**
+- Utilizar React para construir a aplicação.
+- Utilizar MUI (Material-UI) para os componentes visuais.
+- Implementar funcionalidades de adicionar, listar, editar, completar e excluir tarefas.
+- Gerenciar o estado da aplicação de forma adequada usando hooks (useState, useEffect).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+**Avaliação:**
+- Estruturação do código e componentização eficaz.
+- Legibilidade e organização do código.
+- Implementação das funcionalidades básicas de CRUD.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Parte 2: Backend com JSON Server
 
-### `npm test`
+**Objetivo:**
+Configurar um backend simulado utilizando JSON Server para fornecer endpoints RESTful para manipulação das tarefas.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Requisitos:**
+- Configurar o JSON Server e um arquivo `db.json` para simular o banco de dados.
+- Definir rotas para CRUD (Create, Read, Update, Delete) de tarefas.
 
-### `npm run build`
+**Avaliação:**
+- Configuração e uso adequado do JSON Server.
+- Integração entre o frontend (React) e o backend simulado (JSON Server).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Referências e Fontes de Aprendizado:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- [Material-UI (MUI)](https://mui.com/)
+- [Create React App](https://create-react-app.dev/docs/getting-started/)
+- [Axios - Cliente HTTP para JavaScript](https://axios-http.com/ptbr/docs/intro)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### - Canais do YouTube:
+  - [Professor Luiz Fernando Nunes](https://www.youtube.com/@ProfessorLuizFernandoNunes)
+  - [Matheus Battisti](https://www.youtube.com/@MatheusBattisti)
+  - [Conecta Elas](https://www.youtube.com/@conectaelas)
+  - [Sujeito Programador](https://www.youtube.com/@Sujeitoprogramador)
 
-### `npm run eject`
+### Relatório
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Enfrentei desafios significativos ao longo do projeto, especialmente no início, ao lidar com problemas de compatibilidade em meu ambiente de desenvolvimento, os quais demandaram cerca de 3 horas para solucionar. Utilizei amplamente recursos educacionais online, como vídeos do YouTube e documentações, para aprender sobre o uso do Material-UI (MUI), Axios e conceitos do React para implementar as funcionalidades necessárias. Encontrei dificuldades na integração das alterações das tarefas com o backend simulado, mas consegui superá-las com a ajuda do ChatGPT para identificar e resolver problemas de comunicação com o servidor.
